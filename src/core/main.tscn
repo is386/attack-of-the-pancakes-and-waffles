@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://y3nvjx4caxit"]
+
+[ext_resource type="Texture2D" uid="uid://dgd4q3e43vu02" path="res://assets/kitchen.png" id="1_avv2o"]
+[ext_resource type="PackedScene" uid="uid://58bjis4le617" path="res://src/entities/toaster.tscn" id="1_ivtyw"]
+[ext_resource type="Shader" uid="uid://by4uw5p0vcmrt" path="res://resources/shaders/blur.gdshader" id="3_ivtyw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn2t0"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_215gw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivtyw"]
+shader = ExtResource("3_ivtyw")
+shader_parameter/blur_amount = 1.0000000475
+
+[node name="Node" type="Node" unique_id=898915041]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1918778736]
+
+[node name="Toaster" parent="." unique_id=2141265429 instance=ExtResource("1_ivtyw")]
+position = Vector2(-140, 0)
+
+[node name="Borders" type="Node" parent="." unique_id=1988446737]
+
+[node name="Top" type="StaticBody2D" parent="Borders" unique_id=1885606397]
+position = Vector2(0, -120)
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Top" unique_id=1282181995]
+shape = SubResource("WorldBoundaryShape2D_sn2t0")
+
+[node name="Bottom" type="StaticBody2D" parent="Borders" unique_id=2025497595]
+position = Vector2(0, 120)
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Bottom" unique_id=77631083]
+shape = SubResource("WorldBoundaryShape2D_215gw")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=867587940]
+layer = -1
+
+[node name="Kitchen" type="TextureRect" parent="Background" unique_id=397412382]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_avv2o")
+
+[node name="Blur" type="ColorRect" parent="Background" unique_id=1997982469]
+material = SubResource("ShaderMaterial_ivtyw")
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Black" type="ColorRect" parent="Background" unique_id=1815921060]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0.19607843)

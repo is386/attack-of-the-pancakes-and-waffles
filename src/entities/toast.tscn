@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://byiecdtjaqm80"]
+
+[ext_resource type="Texture2D" uid="uid://cspk5fru82llo" path="res://assets/toast.png" id="1_ylio7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0awy3"]
+atlas = ExtResource("1_ylio7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e6tv"]
+atlas = ExtResource("1_ylio7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sn2t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0awy3")
+}],
+"loop": 0,
+"name": &"burnt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e6tv")
+}],
+"loop": 0,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn2t0"]
+size = Vector2(14, 14)
+
+[node name="Toast" type="AnimatableBody2D" unique_id=1458280378]
+collision_layer = 0
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=44108260]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_sn2t0")
+animation = &"normal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1588125430]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_sn2t0")
