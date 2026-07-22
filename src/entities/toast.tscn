@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://byiecdtjaqm80"]
 
+[ext_resource type="Script" uid="uid://ya2nwdmqfeqf" path="res://src/entities/toast.gd" id="1_0awy3"]
 [ext_resource type="Texture2D" uid="uid://cspk5fru82llo" path="res://assets/toast.png" id="1_ylio7"]
+[ext_resource type="Script" uid="uid://b25w1h7hk1r7a" path="res://src/components/hitbox_component.gd" id="3_3e6tv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0awy3"]
 atlas = ExtResource("1_ylio7")
@@ -32,15 +34,39 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn2t0"]
 size = Vector2(14, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_215gw"]
+size = Vector2(4, 14)
+
 [node name="Toast" type="AnimatableBody2D" unique_id=1458280378]
+show_behind_parent = true
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("1_0awy3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=44108260]
+position = Vector2(8, 4)
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_sn2t0")
 animation = &"normal"
+autoplay = "normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1588125430]
+visible = false
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_sn2t0")
+disabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1362481308]
+position = Vector2(10, 5)
+rect = Rect2(-10, -7, 1, 12)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1192178311]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_3e6tv")
+metadata/_custom_type_script = "uid://b25w1h7hk1r7a"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" unique_id=535959746]
+position = Vector2(11, 4)
+shape = SubResource("RectangleShape2D_215gw")
+debug_color = Color(0.8498878, 0, 0.17134094, 0.41960785)

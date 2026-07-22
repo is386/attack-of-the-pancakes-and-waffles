@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dgd4q3e43vu02" path="res://assets/kitchen.png" id="1_avv2o"]
 [ext_resource type="PackedScene" uid="uid://58bjis4le617" path="res://src/entities/toaster.tscn" id="1_ivtyw"]
 [ext_resource type="Shader" uid="uid://by4uw5p0vcmrt" path="res://resources/shaders/blur.gdshader" id="3_ivtyw"]
+[ext_resource type="PackedScene" uid="uid://bicsrmv1jluqf" path="res://src/entities/enemy.tscn" id="4_x62ka"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn2t0"]
 normal = Vector2(0, 1)
@@ -55,3 +56,12 @@ offset_bottom = 240.0
 offset_right = 320.0
 offset_bottom = 240.0
 color = Color(0, 0, 0, 0.19607843)
+
+[node name="Pancake" parent="." unique_id=670069946 instance=ExtResource("4_x62ka")]
+position = Vector2(85, 1)
+
+[node name="Pancake2" parent="." unique_id=156651395 instance=ExtResource("4_x62ka")]
+position = Vector2(151, 0)
+
+[node name="Pancake3" parent="." unique_id=430099862 instance=ExtResource("4_x62ka")]
+position = Vector2(118, 0)

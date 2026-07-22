@@ -2,6 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://dk02ck4ekp0l1" path="res://assets/toaster.png" id="1_c064p"]
 [ext_resource type="Script" uid="uid://r8r26xwa44re" path="res://src/entities/toaster.gd" id="1_flabs"]
+[ext_resource type="PackedScene" uid="uid://byiecdtjaqm80" path="res://src/entities/toast.tscn" id="2_xode7"]
+[ext_resource type="Texture2D" uid="uid://cspk5fru82llo" path="res://assets/toast.png" id="3_s426a"]
+[ext_resource type="Script" uid="uid://8liarfl7nc3g" path="res://src/components/hurtbox_component.gd" id="5_chquv"]
+[ext_resource type="Script" uid="uid://dgsweuq7fijpx" path="res://src/components/health_component.gd" id="6_dxe86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn2t0"]
+atlas = ExtResource("3_s426a")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s426a"]
 atlas = ExtResource("1_c064p")
@@ -57,16 +65,47 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn2t0"]
 size = Vector2(14, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_215gw"]
+size = Vector2(15, 12)
+
 [node name="Toaster" type="CharacterBody2D" unique_id=2141265429]
+z_index = 1
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_flabs")
+speed = 200.0
+toast_packed_scene = ExtResource("2_xode7")
+
+[node name="Toast" type="Sprite2D" parent="." unique_id=516658102]
+position = Vector2(6, 4)
+rotation = 1.5707964
+texture = SubResource("AtlasTexture_sn2t0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1313593369]
 position = Vector2(-6, 0)
 sprite_frames = SubResource("SpriteFrames_sn2t0")
-animation = &"unloaded_up"
+animation = &"loaded_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=31204508]
 position = Vector2(1, 4)
 shape = SubResource("RectangleShape2D_sn2t0")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1053637483]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_chquv")
+metadata/_custom_type_script = "uid://8liarfl7nc3g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1490394527]
+position = Vector2(2.5, 4)
+shape = SubResource("RectangleShape2D_215gw")
+debug_color = Color(6.256998e-07, 0.65083444, 0.08663494, 0.41960785)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1136228965]
+script = ExtResource("6_dxe86")
+max_hp = 3
+metadata/_custom_type_script = "uid://dgsweuq7fijpx"
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=2105350559]
+wait_time = 0.25
+one_shot = true

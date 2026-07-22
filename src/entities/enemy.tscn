@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bicsrmv1jluqf"]
+
+[ext_resource type="Texture2D" uid="uid://cr4bhvno762tj" path="res://assets/pancake.png" id="1_q4xhx"]
+[ext_resource type="Script" uid="uid://jiapqqxum66r" path="res://src/entities/enemy.gd" id="1_t0ujn"]
+[ext_resource type="Script" uid="uid://8liarfl7nc3g" path="res://src/components/hurtbox_component.gd" id="2_t0ujn"]
+[ext_resource type="Script" uid="uid://b25w1h7hk1r7a" path="res://src/components/hitbox_component.gd" id="3_70hd5"]
+[ext_resource type="Script" uid="uid://dgsweuq7fijpx" path="res://src/components/health_component.gd" id="4_mkpbi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn2t0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sn2t0"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_215gw"]
+radius = 8.0
+
+[node name="Enemy" type="AnimatableBody2D" unique_id=670069946]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_t0ujn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091104108]
+texture = ExtResource("1_q4xhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2016094974]
+visible = false
+shape = SubResource("RectangleShape2D_sn2t0")
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1040875419]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_t0ujn")
+metadata/_custom_type_script = "uid://8liarfl7nc3g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=247522174]
+shape = SubResource("CircleShape2D_sn2t0")
+debug_color = Color(2.1418184e-06, 0.64967746, 0.14649913, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1979152881]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_70hd5")
+metadata/_custom_type_script = "uid://b25w1h7hk1r7a"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=98912543]
+shape = SubResource("CircleShape2D_215gw")
+debug_color = Color(0.99817246, 0.03910828, 3.85046e-07, 0.41960785)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=247406340]
+script = ExtResource("4_mkpbi")
+metadata/_custom_type_script = "uid://dgsweuq7fijpx"
