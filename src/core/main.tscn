@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dtxh3irswbk1r" path="res://assets/heart.png" id="3_w61mg"]
 [ext_resource type="FontFile" uid="uid://covtcthck5qfo" path="res://assets/gameboy.ttf" id="5_nxx65"]
 [ext_resource type="Script" uid="uid://dee3g7wqvjqcx" path="res://src/ui/score.gd" id="6_2uitn"]
+[ext_resource type="Texture2D" uid="uid://b82f7waadl0kr" path="res://assets/restart_icon.png" id="7_nlf45"]
+[ext_resource type="Script" uid="uid://cnk467bqdibm7" path="res://src/ui/restart_button.gd" id="8_2in8s"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn2t0"]
 normal = Vector2(0, 1)
@@ -20,6 +22,18 @@ font_size = 12
 font_color = Color(0.06666667, 0.20392157, 0.05882353, 1)
 outline_size = 6
 outline_color = Color(0.54901963, 0.68235296, 0.4509804, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2in8s"]
+atlas = ExtResource("7_nlf45")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlf45"]
+atlas = ExtResource("7_nlf45")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn2t0"]
+atlas = ExtResource("7_nlf45")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ivtyw"]
 shader = ExtResource("3_ivtyw")
@@ -97,6 +111,23 @@ label_settings = SubResource("LabelSettings_sn2t0")
 horizontal_alignment = 2
 script = ExtResource("6_2uitn")
 
+[node name="RestartButton" type="TextureButton" parent="HUD" unique_id=300690061]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_2in8s")
+texture_pressed = SubResource("AtlasTexture_nlf45")
+texture_hover = SubResource("AtlasTexture_sn2t0")
+script = ExtResource("8_2in8s")
+
 [node name="Background" type="CanvasLayer" parent="." unique_id=867587940]
 layer = -1
 
@@ -113,4 +144,4 @@ offset_bottom = 240.0
 [node name="Black" type="ColorRect" parent="Background" unique_id=1815921060]
 offset_right = 320.0
 offset_bottom = 240.0
-color = Color(0, 0, 0, 0.19607843)
+color = Color(0, 0, 0, 0.33333334)

@@ -9,6 +9,8 @@ extends Marker2D
 
 
 func _ready() -> void:
+	SignalBus.toaster_died.connect(_on_toaster_died)
+
 	spawn_timer.wait_time = randf_range(1, 5)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
@@ -28,3 +30,7 @@ func _on_spawn_timer_timeout() -> void:
 		enemy.sprite.texture = pancake_texture
 	else:
 		enemy.sprite.texture = waffle_texture
+
+
+func _on_toaster_died() -> void:
+	queue_free()

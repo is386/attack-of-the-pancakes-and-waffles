@@ -51,6 +51,7 @@ func _on_hurt(hitbox: Hitbox) -> void:
 
 
 func _on_died() -> void:
+	SignalBus.toaster_died.emit()
 	queue_free()
 
 
