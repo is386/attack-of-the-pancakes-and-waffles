@@ -4,10 +4,15 @@ extends AnimatableBody2D
 @export var speed: float = 100
 
 @onready var screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Hitbox = $Hitbox
+
+var is_burnt = false
 
 
 func _ready() -> void:
+	if is_burnt:
+		sprite.play("burnt")
 	screen_notifier.screen_exited.connect(_on_screen_exited)
 	hitbox.hit.connect(_on_hit)
 
@@ -21,4 +26,6 @@ func _on_screen_exited() -> void:
 
 
 func _on_hit(_hurtbox: Hurtbox) -> void:
+	if is_burnt:
+		return
 	queue_free()

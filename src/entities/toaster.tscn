@@ -109,3 +109,6 @@ metadata/_custom_type_script = "uid://dgsweuq7fijpx"
 [node name="ShootTimer" type="Timer" parent="." unique_id=2105350559]
 wait_time = 0.25
 one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="." unique_id=1254320064]
+one_shot = true
