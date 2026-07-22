@@ -6,6 +6,7 @@ extends AnimatableBody2D
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox: Hitbox = $Hitbox
+@onready var sprite: Sprite2D = $Sprite2D
 
 
 func _ready() -> void:
@@ -27,4 +28,5 @@ func _on_hit(_hurtbox: Hurtbox) -> void:
 
 
 func _on_died() -> void:
+	SignalBus.enemy_killed.emit()
 	queue_free()

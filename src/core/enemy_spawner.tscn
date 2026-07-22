@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cppnrsicvx4a1"]
+
+[ext_resource type="Script" uid="uid://com1xxwdmligr" path="res://src/core/enemy_spawner.gd" id="1_2lobw"]
+[ext_resource type="Texture2D" uid="uid://cr4bhvno762tj" path="res://assets/pancake.png" id="2_ksoni"]
+[ext_resource type="Texture2D" uid="uid://0g8duo5wjqfl" path="res://assets/waffle.png" id="3_ctaso"]
+[ext_resource type="PackedScene" uid="uid://bicsrmv1jluqf" path="res://src/entities/enemy.tscn" id="4_nrqou"]
+
+[node name="EnemySpawner" type="Marker2D" unique_id=2072184867]
+script = ExtResource("1_2lobw")
+pancake_texture = ExtResource("2_ksoni")
+waffle_texture = ExtResource("3_ctaso")
+enemy_scene = ExtResource("4_nrqou")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=776839688]

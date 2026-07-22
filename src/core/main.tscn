@@ -2,24 +2,52 @@
 
 [ext_resource type="Texture2D" uid="uid://dgd4q3e43vu02" path="res://assets/kitchen.png" id="1_avv2o"]
 [ext_resource type="PackedScene" uid="uid://58bjis4le617" path="res://src/entities/toaster.tscn" id="1_ivtyw"]
+[ext_resource type="PackedScene" uid="uid://cppnrsicvx4a1" path="res://src/core/enemy_spawner.tscn" id="2_x62ka"]
 [ext_resource type="Shader" uid="uid://by4uw5p0vcmrt" path="res://resources/shaders/blur.gdshader" id="3_ivtyw"]
-[ext_resource type="PackedScene" uid="uid://bicsrmv1jluqf" path="res://src/entities/enemy.tscn" id="4_x62ka"]
+[ext_resource type="Script" uid="uid://bfoqpg650c137" path="res://src/ui/health_bar.gd" id="3_q2b63"]
+[ext_resource type="Texture2D" uid="uid://dtxh3irswbk1r" path="res://assets/heart.png" id="3_w61mg"]
+[ext_resource type="FontFile" uid="uid://covtcthck5qfo" path="res://assets/gameboy.ttf" id="5_nxx65"]
+[ext_resource type="Script" uid="uid://dee3g7wqvjqcx" path="res://src/ui/score.gd" id="6_2uitn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn2t0"]
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_215gw"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_sn2t0"]
+font = ExtResource("5_nxx65")
+font_size = 12
+font_color = Color(0.06666667, 0.20392157, 0.05882353, 1)
+outline_size = 6
+outline_color = Color(0.54901963, 0.68235296, 0.4509804, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ivtyw"]
 shader = ExtResource("3_ivtyw")
 shader_parameter/blur_amount = 1.0000000475
 
-[node name="Node" type="Node" unique_id=898915041]
+[node name="Main" type="Node" unique_id=898915041]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1918778736]
 
 [node name="Toaster" parent="." unique_id=2141265429 instance=ExtResource("1_ivtyw")]
 position = Vector2(-140, 0)
+
+[node name="Spawners" type="Node" parent="." unique_id=1232531730]
+
+[node name="EnemySpawner" parent="Spawners" unique_id=2072184867 instance=ExtResource("2_x62ka")]
+position = Vector2(160, 0)
+
+[node name="EnemySpawner2" parent="Spawners" unique_id=2103408977 instance=ExtResource("2_x62ka")]
+position = Vector2(160, -48)
+
+[node name="EnemySpawner3" parent="Spawners" unique_id=424624939 instance=ExtResource("2_x62ka")]
+position = Vector2(160, -96)
+
+[node name="EnemySpawner4" parent="Spawners" unique_id=1753578323 instance=ExtResource("2_x62ka")]
+position = Vector2(160, 48)
+
+[node name="EnemySpawner5" parent="Spawners" unique_id=543175745 instance=ExtResource("2_x62ka")]
+position = Vector2(160, 96)
 
 [node name="Borders" type="Node" parent="." unique_id=1988446737]
 
@@ -39,6 +67,36 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Bottom" unique_id=77631083]
 shape = SubResource("WorldBoundaryShape2D_215gw")
 
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1240641758]
+
+[node name="HealthBar" type="HBoxContainer" parent="HUD" unique_id=943436139]
+offset_left = 2.0
+offset_right = 58.0
+offset_bottom = 16.0
+theme_override_constants/separation = 2
+script = ExtResource("3_q2b63")
+
+[node name="Heart1" type="TextureRect" parent="HUD/HealthBar" unique_id=334976541]
+layout_mode = 2
+texture = ExtResource("3_w61mg")
+
+[node name="Heart2" type="TextureRect" parent="HUD/HealthBar" unique_id=1200481393]
+layout_mode = 2
+texture = ExtResource("3_w61mg")
+
+[node name="Heart3" type="TextureRect" parent="HUD/HealthBar" unique_id=1052741156]
+layout_mode = 2
+texture = ExtResource("3_w61mg")
+
+[node name="Score" type="Label" parent="HUD" unique_id=356048275]
+offset_left = 224.0
+offset_right = 320.0
+offset_bottom = 23.0
+text = "000000"
+label_settings = SubResource("LabelSettings_sn2t0")
+horizontal_alignment = 2
+script = ExtResource("6_2uitn")
+
 [node name="Background" type="CanvasLayer" parent="." unique_id=867587940]
 layer = -1
 
@@ -56,12 +114,3 @@ offset_bottom = 240.0
 offset_right = 320.0
 offset_bottom = 240.0
 color = Color(0, 0, 0, 0.19607843)
-
-[node name="Pancake" parent="." unique_id=670069946 instance=ExtResource("4_x62ka")]
-position = Vector2(85, 1)
-
-[node name="Pancake2" parent="." unique_id=156651395 instance=ExtResource("4_x62ka")]
-position = Vector2(151, 0)
-
-[node name="Pancake3" parent="." unique_id=430099862 instance=ExtResource("4_x62ka")]
-position = Vector2(118, 0)

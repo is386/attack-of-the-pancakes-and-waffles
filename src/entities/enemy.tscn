@@ -9,17 +9,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn2t0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sn2t0"]
-radius = 8.0
+radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_215gw"]
-radius = 8.0
+radius = 12.0
 
 [node name="Enemy" type="AnimatableBody2D" unique_id=670069946]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_t0ujn")
+speed = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091104108]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_q4xhx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2016094974]

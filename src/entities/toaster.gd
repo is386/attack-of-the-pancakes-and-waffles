@@ -47,6 +47,7 @@ func _on_shoot_timer_timeout() -> void:
 
 func _on_hurt(hitbox: Hitbox) -> void:
 	health_component.take_damage(hitbox.damage)
+	SignalBus.damage_taken.emit()
 
 
 func _on_died() -> void:
