@@ -1,4 +1,4 @@
-# Randy the Computer
+# Attack of the Pancakes and Waffles
 
 ![](./assets/toaster.png)
 
